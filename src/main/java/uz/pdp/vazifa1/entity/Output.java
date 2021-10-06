@@ -1,0 +1,35 @@
+package uz.pdp.vazifa1.entity;
+
+import lombok.*;
+
+import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "outputs")
+public class Output {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(columnDefinition = "timestamp default now()")
+    private Timestamp soldDate;
+
+    @ManyToOne(optional = false)
+    private Warehouse warehouse;
+
+    @ManyToOne(optional = false)
+    private Client client;
+
+    @ManyToOne(optional = false)
+    private Currency currency;
+
+    private Integer factureNumber;
+
+    private Integer code;
+}
